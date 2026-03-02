@@ -62,13 +62,13 @@ def download():
     
     if format_type == 'audio':
         ydl_opts = {
-            'format': 'bestaudio[ext=m4a]/bestaudio/best',
+            'format': 'bestaudio',
             'outtmpl': os.path.join(DOWNLOADS_DIR, f'{file_id}.%(ext)s'),
             'quiet': True,
         }
     else:
         ydl_opts = {
-            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+            'format': 'b', # 'b' is short for 'best', meaning the best single file with both video and audio
             'outtmpl': os.path.join(DOWNLOADS_DIR, f'{file_id}.%(ext)s'),
             'quiet': True,
         }
