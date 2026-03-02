@@ -25,6 +25,11 @@ def get_info():
         'no_warnings': True,
         'extract_flat': True,
     }
+    
+    # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
+    cookies_path = os.path.join(os.path.dirname(__file__), 'cookies.txt')
+    if os.path.exists(cookies_path):
+        ydl_opts['cookiefile'] = cookies_path
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -60,6 +65,11 @@ def download():
             'outtmpl': os.path.join(DOWNLOADS_DIR, f'{file_id}.%(ext)s'),
             'quiet': True,
         }
+
+    # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
+    cookies_path = os.path.join(os.path.dirname(__file__), 'cookies.txt')
+    if os.path.exists(cookies_path):
+        ydl_opts['cookiefile'] = cookies_path
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
