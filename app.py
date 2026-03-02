@@ -24,6 +24,9 @@ def get_info():
         'quiet': True,
         'no_warnings': True,
         'extract_flat': True,
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        }
     }
     
     # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
@@ -69,6 +72,9 @@ def download():
             'outtmpl': os.path.join(DOWNLOADS_DIR, f'{file_id}.%(ext)s'),
             'quiet': True,
             'ffmpeg_location': ffmpeg_path,
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            }
         }
     else:
         ydl_opts = {
@@ -77,6 +83,9 @@ def download():
             'quiet': True,
             'ffmpeg_location': ffmpeg_path,
             'merge_output_format': 'mp4',
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            }
         }
 
     # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
