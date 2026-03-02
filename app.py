@@ -29,7 +29,14 @@ def get_info():
     # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
     cookies_path = os.path.join(os.path.dirname(__file__), 'cookies.txt')
     if os.path.exists(cookies_path):
-        ydl_opts['cookiefile'] = cookies_path
+        import shutil
+        tmp_cookies = os.path.join(DOWNLOADS_DIR, 'cookies.txt')
+        try:
+            shutil.copyfile(cookies_path, tmp_cookies)
+            ydl_opts['cookiefile'] = tmp_cookies
+        except Exception as e:
+            print(f"Error copying cookies: {e}")
+            ydl_opts['cookiefile'] = cookies_path
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -69,7 +76,14 @@ def download():
     # Add cookies if the file exists to avoid "Sign in to confirm you're not a bot" error
     cookies_path = os.path.join(os.path.dirname(__file__), 'cookies.txt')
     if os.path.exists(cookies_path):
-        ydl_opts['cookiefile'] = cookies_path
+        import shutil
+        tmp_cookies = os.path.join(DOWNLOADS_DIR, 'cookies.txt')
+        try:
+            shutil.copyfile(cookies_path, tmp_cookies)
+            ydl_opts['cookiefile'] = tmp_cookies
+        except Exception as e:
+            print(f"Error copying cookies: {e}")
+            ydl_opts['cookiefile'] = cookies_path
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
