@@ -68,7 +68,7 @@ def download():
         }
     else:
         ydl_opts = {
-            'format': 'best[ext=mp4]/best',
+            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
             'outtmpl': os.path.join(DOWNLOADS_DIR, f'{file_id}.%(ext)s'),
             'quiet': True,
         }
